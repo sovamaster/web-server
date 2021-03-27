@@ -257,7 +257,7 @@ void runHttpClient(SOCKET s_client)
 							if (std::string::npos != authpos)
 							{
 								size_t an = recv_header.find("\r\n", authpos);
-								size_t anb = recv_header.find("Basic", authpos);
+								size_t anb = recv_header.find("basic", authpos);
 								if ((std::string::npos != an) && (std::string::npos != anb))
 								{
 									std::string auth_hash = util::strTrim(recv_header.substr(anb + 5, an - anb - 5));
@@ -272,6 +272,8 @@ void runHttpClient(SOCKET s_client)
 										if (it != config::USER_LIST.end())
 										{
 											permits = (*it).permits;
+											/* Check permits for path permits controll */
+
 										}
 										else
 										{
