@@ -32,7 +32,7 @@ make server
 ./web-server
 ```
 
-#### Checks and testing
+### Checks and testing
 
 For web-server testing open with your favorite browser swagger page  http://localhost:37378/swagger/ui
 For websocket-server testing open with your favorite browser test page  http://localhost:37378/ws_test.html
