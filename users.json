@@ -1,0 +1,1 @@
+{"users":[{"name":"Test user", "login":"test", "password":"123", "permits":["/get/test/", "/post/test/"]}]}
