@@ -1,0 +1,102 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Test web server swagger",
+		"description": "The page for web server testing",
+		"contact": {
+			"name": "Your name",
+			"url": "http://localhost/"
+		},
+		"version": "1.1"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:37378",
+			"description": "My web server"
+		}
+	],
+	"paths": {
+		"/post/test": {
+			"post": {
+				"summary": "Test POST request",
+				"tags": [
+					"Test requests"
+				],
+				"operationId": "posttest",
+				"requestBody": {
+					"description": "The json data for POST request testing",
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"message": {
+										"type": "string",
+										"description": "The data for POST request testing",
+										"example": "The data for POST request testing"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Returns json answer from https://httpbin.org/#/HTTP_Methods/post_post include data of request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"message": {
+											"type": "string",
+											"example": "{\"message\": \"the data for get request testing\"}",
+											"description": "Some json answer"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/get/test": {
+			"get": {
+				"summary": "Test GET request",
+				"tags": [
+					"Test requests"
+				],
+				"operationId": "gettest",
+				"parameters": [
+					{
+						"name": "message",
+						"in": "query",
+						"description": "Test data",
+						"required": true,
+						"example": "The data for GET request testing"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Returns json answer from https://httpbin.org/#/HTTP_Methods/get_get include data of request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"message": {
+											"type": "string",
+											"example": "{\"message\": \"the data for get request testing\"}",
+											"description": "Some json answer"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

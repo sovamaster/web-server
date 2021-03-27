@@ -1,0 +1,59 @@
+<!--
+Version - 1.1
+-->
+<!DOCTYPE html>
+<html style="height: 100%;">
+    <head>
+        <title>Websocket test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+    </head>
+    <body style="width: 95%; height: 95%; margin: 10; padding: 10;">
+        
+		<div style="padding: 10px; left: 20px; width: 90%; font-size: 16pt">This page will help you to test your websocket server. Open two or more of these pages. Open a websocket on every page. Send message from any one page. If the message is displayed synchronously across all pages, the socket server is working properly.</div><br/>
+		<div style="padding: 10px; left: 20px;">
+		<button style="left: 20px;" onclick="runWebSocket()">Open websocket</button><br/><br/>
+		<button style="left: 20px;" onclick="sendWebSocket()">Send message</button>
+		</div>
+       
+        
+        <div id="message_area" style="padding: 10px; left: 20px; top: 230px; display: none; center; width: 400px; height: 300px; font-size: 25pt; font-family: monospace; font-weight:  bold; color: red"></div>
+            
+        
+    </body>
+    <script type="text/javascript">
+        
+        var ws = undefined;
+		
+		function sendWebSocket() {
+			var message = prompt('Enter your message.');
+			ws.send(message);
+		}
+        
+        function runWebSocket() {
+            
+ 			ws = new WebSocket("ws://localhost:37377");
+			//ws = new WebSocket("ws://192.168.1.49:37377");
+
+            ws.onopen = function() {
+              alert("The connection is established.");
+             };
+            
+            ws.onclose = function(event) {
+				alert("Connection closed. Code: "+event.code);
+            };
+            
+            ws.onmessage = function(event) {
+				
+				var mesarea = document.getElementById('message_area')
+				mesarea.style.display = "block"; 
+				mesarea.innerHTML = event.data;				
+            };
+            
+            ws.onerror = function(error) {
+                alert("Error");
+            }; 
+        }
+        
+    </script>  
+</html>
